@@ -126,10 +126,9 @@ optional arguments:
   --gpu GPU             use gpu to forward(0:disable,1:enable,default:0)
 python caffe-int8-convert-tool-dev-weight.py --proto=test/models/mobilenet_v1.prototxt --model=test/models/mobilenet_v1.caffemodel --mean 127.5 127.5 127.5 --norm=0.0078125 --images=test/images/ -output=mobilenet_v1.table --group=1 --gpu=1
 
+
 # Some common functions
-
 ## funcs.py
-
 - **get_iou(box_a, box_b)** intersection over union of two boxes
 - **nms(bboxs,scores,thresh)** Non-maximum suppression
 - **Logger** print some str to a file and stdout with H M S
