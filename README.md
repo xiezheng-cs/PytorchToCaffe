@@ -103,6 +103,29 @@ conda install caffe-gpu pytorch cudatoolkit=9.0 -c pytorch
 please see file `example/verify_deploy.py`,it can verify the output of pytorch model and the convertted caffe model in the same input.
 
 
+# Quantization
+This convert tools is base on TensorRT 2.0 Int8 calibration tools,which use the KL algorithm to find the suitable threshold to quantize the activions from Float32 to Int8(-128 - 127).
+
+python caffe-int8-convert-tool-dev-weight.py -h
+usage: caffe-int8-convert-tool-dev-weight.py [-h] [--proto PROTO] [--model MODEL]
+                                  [--mean MEAN MEAN MEAN] [--norm NORM]
+                                  [--images IMAGES] [--output OUTPUT]
+                                  [--group GROUP] [--gpu GPU]
+
+find the pretrained caffemodel int8 quantize scale value
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --proto PROTO         path to deploy prototxt.
+  --model MODEL         path to pretrained caffemodel
+  --mean MEAN           value of mean
+  --norm NORM           value of normalize(scale value)
+  --images IMAGES       path to calibration images
+  --output OUTPUT       path to output calibration table file
+  --group GROUP         enable the group scale(0:disable,1:enable,default:1)
+  --gpu GPU             use gpu to forward(0:disable,1:enable,default:0)
+python caffe-int8-convert-tool-dev-weight.py --proto=test/models/mobilenet_v1.prototxt --model=test/models/mobilenet_v1.caffemodel --mean 127.5 127.5 127.5 --norm=0.0078125 --images=test/images/ -output=mobilenet_v1.table --group=1 --gpu=1
+
 # Some common functions
 
 ## funcs.py
