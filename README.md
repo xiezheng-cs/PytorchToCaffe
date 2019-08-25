@@ -49,6 +49,9 @@ conda install caffe-gpu pytorch cudatoolkit=9.0 -c pytorch
 ```
 please see file `example/verify_deploy.py`,it can verify the output of pytorch model and the convertted caffe model in the same input.
 
+```angular2html
+##################################################################################################################################################
+```
 
 ## Add something
  - Supporting layers types:
