@@ -4,7 +4,8 @@
 The new version of pytorch_to_caffe supporting the newest version(from 0.2.0 to 0.4.1) of pytorch.
 NOTICE: The transfer output will be somewhat different with the original model, caused by implementation difference.
 
-- Supporting layers types: 
+- Supporting layers types:
+```angular2html
 conv2d  ->  Convolution, 
 _conv_transpose2d ->  Deconvolution, 
 _linear -> InnerProduct, 
@@ -22,10 +23,10 @@ dropout -> Dropout,
  batch_norm -> BatchNorm,Scale, 
  instance_norm -> BatchNorm,Scale,
  _interpolate  ->  Upsample
- 
+ ```
+
 - Supporting operations: torch.split, torch.max, torch.cat
-- Supporting tensor Variable operations: var.view, + (add), += (iadd), -(sub), -=(isub)
- \* (mul) *= (imul)
+- Supporting tensor Variable operations: var.view, + (add), += (iadd), -(sub), -=(isub), * (mul), *= (imul)
 
 Need to be added for caffe in the future:
 - Normalize,DepthwiseConv
@@ -51,8 +52,10 @@ please see file `example/verify_deploy.py`,it can verify the output of pytorch m
 
 ## Add something
  - Supporting layers types:
+```angular2html
         nn.AdaptiveAvgPool2d
         nn.Sigmoid
+```
 
 ## A method to convert SELayer from pytorch to caffe
 ```angular2html
