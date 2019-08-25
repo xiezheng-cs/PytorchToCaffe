@@ -50,9 +50,11 @@ please see file `example/verify_deploy.py`,it can verify the output of pytorch m
 
 
 ## Add something
- - Supporting layers types: nn.AdaptiveAvgPool2d, nn.Sigmoid
+ - Supporting layers types:
+        nn.AdaptiveAvgPool2d
+        nn.Sigmoid
 
-## A method to finish convert SELayer from pytorch to caffe
+## A method to convert SELayer from pytorch to caffe
 ```angular2html
 layer {
   name: "view2"
