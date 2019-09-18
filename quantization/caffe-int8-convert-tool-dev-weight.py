@@ -49,9 +49,9 @@ def parse_args():
     parser.add_argument('--model', dest='model',
                         help='path to pretrained weights', type=str)
     parser.add_argument('--mean', dest='mean',
-                        help='value of mean', type=float, nargs=3)
+                        help='value of mean', type=float, nargs=3, default=[127.5,127.5,127.5])
     parser.add_argument('--norm', dest='norm',
-                        help='value of normalize', type=float, nargs=1, default=1.0)
+                        help='value of normalize', type=float, nargs=1, default=[0.0078125])
 
     parser.add_argument('--img_num', dest='img_num',
                         help='the number of images, -1: means using all images', type=int, default=5000)
@@ -80,7 +80,7 @@ def parse_args():
     parser.add_argument('--group', dest='group',
                         help='enable the group scale', type=int, default=1)
     parser.add_argument('--gpu', dest='gpu',
-                        help='use gpu to forward', type=int, default=0)
+                        help='use gpu to forward', type=int, default=1)
 
     args = parser.parse_args()
     return args, parser
@@ -305,6 +305,8 @@ def network_prepare(net, mean, norm):
     print("Network initial")
 
     img_mean = np.array(mean)
+    # print(img_mean)
+    # assert False
 
     # initial transformer
     transformer = caffe.io.Transformer({'data': net.blobs['data'].data.shape})
@@ -490,6 +492,7 @@ def main():
 
     # default use CPU to forwark
     if args.gpu != 0:
+        os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu)
         caffe.set_device(0)
         caffe.set_mode_gpu()
 
